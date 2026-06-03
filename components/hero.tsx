@@ -11,11 +11,10 @@ import {
   Briefcase,
   Cpu,
   Download,
+  FolderKanban,
   MapPin,
   Rocket,
-  Shield,
   Sparkles,
-  Zap,
 } from "lucide-react";
 
 import { ProfilePhoto } from "@/components/profile-photo";
@@ -24,13 +23,9 @@ import { Button } from "@/components/ui/button";
 import { contact, profile, stats } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
-const stackLine = ["React", "Laravel", "WordPress", "Tailwind"];
+const stackLine = ["WordPress", "Laravel", "React", "Tailwind / SCSS"];
 
-const starkStats = [
-  { label: "Arc Reactor", value: "100%", icon: Zap, detail: "Systèmes en ligne" },
-  { label: "Armure HUD", value: "Mk III", icon: Shield, detail: "Interface Stark" },
-  { label: "Mission", value: "ASAP", icon: Rocket, detail: stats[2]?.detail ?? "Alternance" },
-];
+const statIcons = [FolderKanban, Briefcase, Rocket] as const;
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -57,7 +52,7 @@ export function Hero() {
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-cyan opacity-75" />
             <span className="relative inline-flex size-2 rounded-full bg-cyan shadow-[0_0_12px_rgba(56,189,248,0.9)]" />
           </span>
-          STARK OS • JARVIS — {profile.headline}
+          {profile.headline}
         </motion.div>
 
         <motion.h1
@@ -118,8 +113,8 @@ export function Hero() {
           variants={staggerContainer}
           className="gaming-hud mt-8 grid max-w-2xl gap-3 sm:grid-cols-3"
         >
-          {starkStats.map((stat) => {
-            const Icon = stat.icon;
+          {stats.map((stat, index) => {
+            const Icon = statIcons[index] ?? Rocket;
 
             return (
               <motion.div
@@ -208,16 +203,6 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="relative mt-5 grid grid-cols-3 gap-3 text-center text-xs text-muted">
-              {["HUD Sync", "Arc Power", "Combat Ready"].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/10 bg-white/5 py-3 transition hover:border-gold/40 hover:text-foreground"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
           </div>
         </motion.div>
       </Ps5Tilt>

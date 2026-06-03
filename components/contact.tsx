@@ -77,7 +77,7 @@ export function Contact() {
                 <input
                   name="name"
                   required
-                  placeholder="Votre nom"
+                  placeholder=""
                   className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
                 />
               </label>
@@ -87,7 +87,7 @@ export function Contact() {
                   name="email"
                   type="email"
                   required
-                  placeholder="vous@entreprise.com"
+                  placeholder=""
                   className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
                 />
               </label>
@@ -97,7 +97,7 @@ export function Contact() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="Bonjour Ariel, nous aimerions échanger avec vous..."
+                  placeholder=""
                   className="resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
                 />
               </label>

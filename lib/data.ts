@@ -60,10 +60,10 @@ export const highlights = [
 ];
 
 export const techStack = [
-  { name: "React.js", icon: Sparkles, tone: "from-cyan-300/30 to-blue-400/10" },
-  { name: "Laravel", icon: Server, tone: "from-red-300/20 to-orange-500/10" },
-  { name: "PHP", icon: Code2, tone: "from-violet-300/30 to-indigo-500/10" },
   { name: "WordPress", icon: Globe2, tone: "from-sky-400/30 to-blue-500/10" },
+  { name: "Laravel", icon: Server, tone: "from-red-300/20 to-orange-500/10" },
+  { name: "React.js", icon: Sparkles, tone: "from-cyan-300/30 to-blue-400/10" },
+  { name: "PHP", icon: Code2, tone: "from-violet-300/30 to-indigo-500/10" },
   { name: "JavaScript", icon: Braces, tone: "from-yellow-300/20 to-amber-500/10" },
   { name: "Tailwind / SCSS", icon: Layers3, tone: "from-cyan-300/30 to-teal-500/10" },
   { name: "MySQL", icon: Database, tone: "from-emerald-300/30 to-green-500/10" },
@@ -255,8 +255,8 @@ export const experiences: Experience[] = [
       "Plateforme web type Airbnb avec React.js et Laravel : dashboards admin et utilisateur (comptes, annonces, réservations), maquettes Figma, méthode Scrum et participation au déploiement en production.",
   },
   {
-    period: "Avr. 2023 – Juin. 2024",
-    duration: " 2 mois",
+    period: "Août – Sept. 2024",
+    duration: "2 mois",
     company: "CCESI Agence de Nantes",
     location: "Paris, France",
     title: "Développeur Web",
@@ -310,7 +310,7 @@ export const experienceTypeLabels: Record<
 };
 
 export const stats = [
-  { label: "Projets", value: "7+", detail: "WordPress & Laravel" },
-  { label: "Expérience", value: "4+", detail: "stages & alternance" },
+  { label: "Projets", value: "7", detail: "WordPress & Laravel (Illisite)" },
+  { label: "Expériences", value: "4", detail: "Illisite · Amazon · CCESI · DEKRA" },
   { label: "Objectif", value: "ASAP", detail: "Alternance full stack" },
 ];

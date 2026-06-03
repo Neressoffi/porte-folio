@@ -9,6 +9,7 @@ import { Navbar } from "@/components/navbar";
 import { Projects } from "@/components/projects";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SceneBackground } from "@/components/scene-background";
+import { ProfileBuddy } from "@/components/profile-buddy";
 import { TechStack } from "@/components/tech-stack";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       <Experience />
       <Contact />
       <Footer />
+      <ProfileBuddy />
     </main>
   );
 }
