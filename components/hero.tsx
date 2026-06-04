@@ -181,7 +181,7 @@ export function Hero() {
               <Sparkles className="absolute right-4 top-4 z-[4] size-7 text-gold/80" />
 
               <div className="absolute left-4 top-4 z-[4] rounded-full border border-gold/25 bg-black/50 px-3 py-1 text-xs text-amber-100/90 backdrop-blur-sm">
-                Protocol Stark • {profile.role}
+                • {profile.role}
               </div>
 
               <div className="absolute bottom-4 left-4 right-4 z-[4] rounded-2xl border border-cyan/25 bg-black/50 p-4 backdrop-blur-md">
