@@ -1,7 +1,7 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
+import { Loader2, Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
 
 import { MotionSection } from "@/components/motion-section";
 import { Ps5Tilt } from "@/components/ps5-tilt";
@@ -9,20 +9,55 @@ import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { contact, profile } from "@/lib/data";
 
+type FormStatus = "idle" | "loading" | "success" | "error";
+
 export function Contact() {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [feedback, setFeedback] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = form.get("name");
-    const message = form.get("message");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    const subject = encodeURIComponent(`Contact portfolio - ${name}`);
-    const body = encodeURIComponent(String(message));
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
-    setStatus("Ton client mail va s'ouvrir avec le message prérempli.");
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+    };
+
+    setStatus("loading");
+    setFeedback("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Erreur lors de l'envoi.");
+      }
+
+      setStatus("success");
+      setFeedback(
+        "Message envoyé. Vous recevrez un email de confirmation ; Ariel a été notifié.",
+      );
+      form.reset();
+    } catch (error) {
+      setStatus("error");
+      setFeedback(
+        error instanceof Error
+          ? error.message
+          : "Impossible d'envoyer le message. Réessayez ou contactez-moi par email.",
+      );
+    }
   }
+
+  const isLoading = status === "loading";
 
   return (
     <MotionSection id="contact">
@@ -77,8 +112,9 @@ export function Contact() {
                 <input
                   name="name"
                   required
+                  disabled={isLoading}
                   placeholder=""
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60 disabled:opacity-60"
                 />
               </label>
               <label className="grid gap-2">
@@ -87,8 +123,9 @@ export function Contact() {
                   name="email"
                   type="email"
                   required
+                  disabled={isLoading}
                   placeholder=""
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60 disabled:opacity-60"
                 />
               </label>
               <label className="grid gap-2">
@@ -97,20 +134,42 @@ export function Contact() {
                   name="message"
                   required
                   rows={5}
+                  disabled={isLoading}
                   placeholder=""
-                  className="resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60"
+                  className="resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-foreground outline-none transition placeholder:text-muted focus:border-primary/60 disabled:opacity-60"
                 />
               </label>
             </div>
 
             <button
               type="submit"
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-primary/90"
+              disabled={isLoading}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-70"
             >
-              Envoyer le message
-              <Send className="size-4" />
+              {isLoading ? (
+                <>
+                  <Loader2 className="size-4 animate-spin" />
+                  Envoi en cours…
+                </>
+              ) : (
+                <>
+                  Envoyer le message
+                  <Send className="size-4" />
+                </>
+              )}
             </button>
-            {status ? <p className="mt-4 text-sm text-cyan">{status}</p> : null}
+            {feedback ? (
+              <p
+                className={
+                  status === "success"
+                    ? "mt-4 text-sm text-emerald-400"
+                    : "mt-4 text-sm text-red-400"
+                }
+                role="status"
+              >
+                {feedback}
+              </p>
+            ) : null}
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Button
