@@ -38,7 +38,9 @@ function sanitizeCompany(raw: string | null | undefined) {
     .slice(0, 120);
 }
 
-function isValidNetworkInfo(location: NetworkInfo | null | undefined) {
+function isValidNetworkInfo(
+  location: NetworkInfo | null | undefined,
+): location is NetworkInfo {
   return Boolean(location?.effectiveIp && location?.company);
 }
 
