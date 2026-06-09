@@ -111,7 +111,7 @@ export function DoorTransition() {
         <span className="door-grid" />
       </div>
       <div className="door-core">
-        <span className="door-lock">ACCESS</span>
+        <span className="door-lock">ACCÈS</span>
         <span className="door-label">{door.label}</span>
       </div>
     </div>

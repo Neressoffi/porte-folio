@@ -24,7 +24,7 @@ export const contact = {
 export const profile = {
   name: "Ariel Ngoualem",
   role: "Développeur Full Stack",
-  headline: "Recherche d'une alternance • ASAP",
+  headline: "Recherche d'une alternance • dès que possible",
   location: contact.location,
   availability: "Alternance full stack • Disponible",
   image: "/profile.png",
@@ -46,16 +46,16 @@ export const softSkills = [
 
 export const navItems = [
   { label: "À propos", href: "#about" },
-  { label: "Stack", href: "#stack" },
+  { label: "Technologies", href: "#stack" },
   { label: "Projets", href: "#projects" },
   { label: "Parcours", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const highlights = [
-  "WordPress sur mesure : ACF, Custom Post Types et intégration CMS",
-  "Applications Laravel : API REST, dashboards admin et fonctionnalités métier",
-  "Full stack React + Laravel : maquettes Figma, Scrum et mise en production",
+  "WordPress sur mesure : ACF, types de contenu personnalisés et intégration CMS",
+  "Applications Laravel : API REST, tableaux de bord admin et fonctionnalités métier",
+  "React + Laravel : maquettes Figma, Scrum et mise en production",
   "Déploiement, hébergement et collaboration avec designers et développeurs",
 ];
 
@@ -96,14 +96,14 @@ export const projects: Project[] = [
     steps: [
       "Analyse des besoins et définition des fonctionnalités (site + espace adhérent)",
       "Modélisation BDD (MCD/MLD) : adhérents, sociétés, publications, actualités, stats",
-      "Setup Laravel : routes, contrôleurs, migrations, modèles Eloquent",
+      "Configuration Laravel : routes, contrôleurs, migrations, modèles Eloquent",
       "Migrations et relations entre les tables",
-      "Intégration maquette : Header, Body, Footer, menus et sections dynamiques",
+      "Intégration maquette : en-tête, corps, pied de page, menus et sections dynamiques",
       "Pages institutionnelles : actualités, champs d'actions, publications, statistiques",
       "Espace membre sécurisé avec authentification et gestion des accès",
-      "CRUD adhérents, publications et contenus administrables",
+      "Gestion complète des adhérents, publications et contenus administrables",
       "Interface d'administration simplifiée pour les administrateurs",
-      "Responsive mobile, tablette et desktop",
+      "Version mobile, tablette et ordinateur adaptative",
       "Tests, corrections, optimisations et mise en recette",
     ],
     tech: ["Laravel", "PHP", "MySQL", "Eloquent", "Blade", "Auth"],
@@ -116,13 +116,13 @@ export const projects: Project[] = [
     category: "Site vitrine • Bâtiment",
     client: "Illisite",
     description:
-      "Site vitrine pour l'entreprise générale de bâtiment ANB : présentation des services (industriel & particulier), demandes de devis, partenaires et contact. Design responsive avec gestion de contenu simplifiée pour le client.",
+      "Site vitrine pour l'entreprise générale de bâtiment ANB : présentation des services (industriel & particulier), demandes de devis, partenaires et contact. Design adaptatif avec gestion de contenu simplifiée pour le client.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
-      "Responsive mobile",
+      "Version mobile adaptative",
     ],
-    tech: ["WordPress", "ACF", "PHP", "Responsive"],
+    tech: ["WordPress", "ACF", "PHP", "Adaptatif"],
     demo: "https://anb.illisite.info",
     image: "/projects/anb.png",
     gradient: "from-amber-500/30 via-orange-300/15 to-transparent",
@@ -132,13 +132,13 @@ export const projects: Project[] = [
     category: "Site vitrine • Électricité",
     client: "Illisite",
     description:
-      "Site vitrine pour Facitec, entreprise d'électricité en région parisienne : prestations, activité et pages de présentation. Interface responsive et back-office simple pour les mises à jour client.",
+      "Site vitrine pour Facitec, entreprise d'électricité en région parisienne : prestations, activité et pages de présentation. Interface adaptative et administration simple pour les mises à jour client.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
-      "Responsive mobile",
+      "Version mobile adaptative",
     ],
-    tech: ["WordPress", "ACF", "PHP", "Responsive"],
+    tech: ["WordPress", "ACF", "PHP", "Adaptatif"],
     demo: "https://facitec.illisite.info",
     image: "/projects/facitec.png",
     gradient: "from-yellow-400/25 via-amber-300/15 to-transparent",
@@ -150,11 +150,11 @@ export const projects: Project[] = [
     description:
       "Site vitrine avec boutique en ligne pour Pixlab (réparation d'écrans LED professionnels & matériel DJ) : services SAV, catalogue de pièces détachées, demandes de devis et gestion produits.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
-      "Responsive mobile",
+      "Version mobile adaptative",
     ],
-    tech: ["WordPress", "ACF", "WooCommerce", "Responsive"],
+    tech: ["WordPress", "ACF", "WooCommerce", "Adaptatif"],
     demo: "https://pixlab.illisite.info",
     image: "/projects/pixlab.png",
     gradient: "from-fuchsia-500/30 via-violet-300/15 to-transparent",
@@ -164,14 +164,14 @@ export const projects: Project[] = [
     category: "Site institutionnel",
     client: "Illisite",
     description:
-      "Site institutionnel pour la Fédération des centres sociaux de France : actualités, ressources et repères historiques du réseau. Interface responsive avec frise chronologique interactive.",
+      "Site institutionnel pour la Fédération des centres sociaux de France : actualités, ressources et repères historiques du réseau. Interface adaptative avec frise chronologique interactive.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
       "Frise chronologique interactive",
-      "Responsive mobile",
+      "Version mobile adaptative",
     ],
-    tech: ["WordPress", "ACF", "JavaScript", "Responsive"],
+    tech: ["WordPress", "ACF", "JavaScript", "Adaptatif"],
     demo: "https://memoirevive.illisite.info",
     image: "/projects/memoires-vives.png",
     gradient: "from-emerald-400/25 via-teal-300/15 to-transparent",
@@ -181,12 +181,12 @@ export const projects: Project[] = [
     category: "Site institutionnel",
     client: "Illisite",
     description:
-      "Site pour l'Association des Petites Villes de France : actualités, événements, adhésions et valorisation des services aux collectivités. Gestion dynamique des contenus avec Custom Post Types.",
+      "Site pour l'Association des Petites Villes de France : actualités, événements, adhésions et valorisation des services aux collectivités. Gestion dynamique des contenus avec types de contenu personnalisés.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
-      "Custom Post Types (CPT)",
-      "Responsive mobile",
+      "Types de contenu personnalisés (CPT)",
+      "Version mobile adaptative",
     ],
     tech: ["WordPress", "ACF", "CPT", "PHP"],
     demo: "https://apvf2026.illisite.info",
@@ -200,10 +200,10 @@ export const projects: Project[] = [
     description:
       "Site en version développement/recette pour l'Alliance de l'Industrie et de l'Ingénierie des Réseaux Ferroviaires : filière ferroviaire, groupes de travail, actualités, événements et adhésion.",
     steps: [
-      "Découpage maquette en composants (header, body, footer)",
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
-      "Custom Post Types (CPT)",
-      "Responsive mobile",
+      "Types de contenu personnalisés (CPT)",
+      "Version mobile adaptative",
     ],
     tech: ["WordPress", "ACF", "CPT", "PHP"],
     demo: "https://aiirf.illisite.info",
@@ -241,7 +241,7 @@ export const experiences: Experience[] = [
     type: "alternance",
     stack: ["WordPress", "Laravel", "PHP", "ACF", "MySQL"],
     description:
-      "Conception et développement de sites WordPress en PHP et d'applications web avec Laravel. Personnalisation CMS (ACF, CPT), API REST, dashboards d'administration, collaboration avec designers et déploiement en production.",
+      "Conception et développement de sites WordPress en PHP et d'applications web avec Laravel. Personnalisation CMS (ACF, CPT), API REST, tableaux de bord d'administration, collaboration avec designers et déploiement en production.",
   },
   {
     period: "Juillet – Août 2024",
@@ -252,7 +252,7 @@ export const experiences: Experience[] = [
     type: "stage",
     stack: ["React", "Laravel", "Figma", "Scrum", "MySQL"],
     description:
-      "Plateforme web type Airbnb avec React.js et Laravel : dashboards admin et utilisateur (comptes, annonces, réservations), maquettes Figma, méthode Scrum et participation au déploiement en production.",
+      "Plateforme web type Airbnb avec React.js et Laravel : tableaux de bord admin et utilisateur (comptes, annonces, réservations), maquettes Figma, méthode Scrum et participation au déploiement en production.",
   },
   {
     period: "Août – Sept. 2024",
@@ -266,7 +266,7 @@ export const experiences: Experience[] = [
       "Mise en place d'un site de réservation de salles de fêtes : analyse du cahier des charges, modélisation MERISE et développement orienté réservation et paiement.",
     points: [
       "Référencement SEO et intégration WooCommerce (paiement / réservation)",
-      "Interface responsive Bootstrap et fonctionnalités interactives JavaScript",
+      "Interface adaptative Bootstrap et fonctionnalités interactives JavaScript",
       "Back-end PHP, sessions, formulaires et base MySQL",
       "Tests unitaires PHPUnit, documentation et méthode Scrum",
     ],
@@ -294,7 +294,7 @@ export const experiences: Experience[] = [
     location: "Paris, France",
     title: "Concepteur Développeur d'Applications",
     type: "formation",
-    stack: ["Architecture", "Full stack", "Projets web"],
+    stack: ["Architecture", "Applications web", "Projets web"],
     description:
       "Formation en développement d'applications web et logicielles : architecture, projets full stack et bonnes pratiques de développement.",
   },
@@ -312,5 +312,5 @@ export const experienceTypeLabels: Record<
 export const stats = [
   { label: "Projets", value: "7", detail: "WordPress & Laravel (Illisite)" },
   { label: "Expériences", value: "4", detail: "Illisite · Amazon · CCESI · DEKRA" },
-  { label: "Objectif", value: "ASAP", detail: "Alternance full stack" },
+  { label: "Objectif", value: "Dès que possible", detail: "Alternance full stack" },
 ];

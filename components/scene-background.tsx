@@ -3,8 +3,32 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
+import { useBuddyScene } from "@/components/buddy-scene-provider";
+
+const EDGE = {
+  blueOrb: { x: 6.2, y: 2.8, z: -1.4, scale: 1.05 },
+  violetOrb: { x: -6, y: -3.1, z: -1.6, scale: 0.72 },
+  cyanRing: { x: -5.6, y: 2.5, z: -2.4, scale: 0.58 },
+  violetRing: { x: 5.8, y: -2.8, z: -2.8, scale: 0.5 },
+  portalRing: { x: 0, y: 3.6, z: -4.8, scale: 0.75 },
+} as const;
+
+const OPACITY = {
+  blueOrb: 0.72,
+  violetOrb: 0.62,
+  cyanRing: 0.38,
+  violetRing: 0.28,
+  portalRing: 0.16,
+} as const;
+
 export function SceneBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { edgeOrbsVisible } = useBuddyScene();
+  const edgeOrbsVisibleRef = useRef(edgeOrbsVisible);
+
+  useEffect(() => {
+    edgeOrbsVisibleRef.current = edgeOrbsVisible;
+  }, [edgeOrbsVisible]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -87,70 +111,60 @@ export function SceneBackground() {
     scene.add(streaks);
 
     const orbGeometry = new THREE.IcosahedronGeometry(0.85, 1);
-    const blueOrb = new THREE.Mesh(
-      orbGeometry,
-      new THREE.MeshBasicMaterial({
-        color: "#DC2626",
-        wireframe: true,
-        transparent: true,
-        opacity: 0.85,
-      }),
-    );
-    const violetOrb = new THREE.Mesh(
-      orbGeometry,
-      new THREE.MeshBasicMaterial({
-        color: "#F59E0B",
-        wireframe: true,
-        transparent: true,
-        opacity: 0.75,
-      }),
-    );
+    const blueOrbMaterial = new THREE.MeshBasicMaterial({
+      color: "#DC2626",
+      wireframe: true,
+      transparent: true,
+      opacity: 0,
+    });
+    const violetOrbMaterial = new THREE.MeshBasicMaterial({
+      color: "#F59E0B",
+      wireframe: true,
+      transparent: true,
+      opacity: 0,
+    });
 
-    blueOrb.position.set(3.8, 1.5, -1);
-    blueOrb.scale.setScalar(1.35);
-    violetOrb.position.set(-3.6, -1.2, -2);
-    violetOrb.scale.setScalar(0.9);
+    const blueOrb = new THREE.Mesh(orbGeometry, blueOrbMaterial);
+    const violetOrb = new THREE.Mesh(orbGeometry, violetOrbMaterial);
+    blueOrb.scale.setScalar(0.001);
+    violetOrb.scale.setScalar(0.001);
     scene.add(blueOrb, violetOrb);
 
     const ringGeometry = new THREE.TorusGeometry(1.7, 0.01, 16, 140);
-    const cyanRing = new THREE.Mesh(
-      ringGeometry,
-      new THREE.MeshBasicMaterial({
-        color: "#38BDF8",
-        transparent: true,
-        opacity: 0.5,
-      }),
-    );
-    const violetRing = new THREE.Mesh(
-      ringGeometry,
-      new THREE.MeshBasicMaterial({
-        color: "#FBBF24",
-        transparent: true,
-        opacity: 0.35,
-      }),
-    );
-    cyanRing.position.set(2.7, 0.6, -2.4);
-    cyanRing.rotation.set(1.25, 0.2, 0.3);
-    violetRing.position.set(-2.5, -0.8, -2.8);
-    violetRing.rotation.set(1.1, -0.35, -0.2);
-    violetRing.scale.setScalar(0.72);
+    const cyanRingMaterial = new THREE.MeshBasicMaterial({
+      color: "#38BDF8",
+      transparent: true,
+      opacity: 0,
+    });
+    const violetRingMaterial = new THREE.MeshBasicMaterial({
+      color: "#FBBF24",
+      transparent: true,
+      opacity: 0,
+    });
+
+    const cyanRing = new THREE.Mesh(ringGeometry, cyanRingMaterial);
+    const violetRing = new THREE.Mesh(ringGeometry, violetRingMaterial);
+    cyanRing.scale.setScalar(0.001);
+    violetRing.scale.setScalar(0.001);
     scene.add(cyanRing, violetRing);
 
+    const portalRingMaterial = new THREE.MeshBasicMaterial({
+      color: "#DC2626",
+      transparent: true,
+      opacity: 0,
+    });
     const portalRing = new THREE.Mesh(
       new THREE.TorusGeometry(2.4, 0.006, 12, 180),
-      new THREE.MeshBasicMaterial({
-        color: "#DC2626",
-        transparent: true,
-        opacity: 0.2,
-      }),
+      portalRingMaterial,
     );
-    portalRing.position.z = -4;
+    portalRing.scale.setScalar(0.001);
     scene.add(portalRing);
 
     let targetMouseX = 0;
     let targetMouseY = 0;
     let smoothMouseX = 0;
     let smoothMouseY = 0;
+    let edgeBlend = 0;
 
     const onMouseMove = (event: MouseEvent) => {
       targetMouseX = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -161,12 +175,17 @@ export function SceneBackground() {
       window.addEventListener("mousemove", onMouseMove);
     }
 
+    const lerp = (from: number, to: number, t: number) => from + (to - from) * t;
+
     let frameId = 0;
     const animate = () => {
       const time = performance.now() * 0.001;
 
       smoothMouseX += (targetMouseX - smoothMouseX) * 0.06;
       smoothMouseY += (targetMouseY - smoothMouseY) * 0.06;
+
+      const edgeTarget = edgeOrbsVisibleRef.current ? 1 : 0;
+      edgeBlend += (edgeTarget - edgeBlend) * (prefersReduced ? 1 : 0.05);
 
       if (!prefersReduced) {
         const posAttr = particleGeometry.attributes.position as THREE.BufferAttribute;
@@ -188,22 +207,68 @@ export function SceneBackground() {
       streaks.rotation.z = smoothMouseX * 0.06;
       streaks.position.x = Math.sin(time * 0.55) * 0.14 + smoothMouseX * 0.35;
 
+      const edgeParallaxX = smoothMouseX * 0.18;
+      const edgeParallaxY = smoothMouseY * 0.12;
+
+      blueOrb.position.set(
+        lerp(0, EDGE.blueOrb.x + edgeParallaxX, edgeBlend),
+        lerp(0, EDGE.blueOrb.y + edgeParallaxY, edgeBlend),
+        EDGE.blueOrb.z,
+      );
+      blueOrb.scale.setScalar(
+        lerp(0.001, EDGE.blueOrb.scale, edgeBlend),
+      );
       blueOrb.rotation.x = time * 0.4;
       blueOrb.rotation.y = time * 0.28;
-      blueOrb.position.y = 1.5 + Math.sin(time * 1.1) * 0.2;
-      blueOrb.position.x = 3.8 + smoothMouseX * 0.45;
+      blueOrbMaterial.opacity = OPACITY.blueOrb * edgeBlend;
 
+      violetOrb.position.set(
+        lerp(0, EDGE.violetOrb.x - edgeParallaxX * 0.8, edgeBlend),
+        lerp(0, EDGE.violetOrb.y - edgeParallaxY * 0.8, edgeBlend),
+        EDGE.violetOrb.z,
+      );
+      violetOrb.scale.setScalar(
+        lerp(0.001, EDGE.violetOrb.scale, edgeBlend),
+      );
       violetOrb.rotation.x = -time * 0.26;
       violetOrb.rotation.y = time * 0.34;
-      violetOrb.position.y = -1.2 + Math.cos(time * 0.95) * 0.18;
-      violetOrb.position.x = -3.6 - smoothMouseX * 0.35;
+      violetOrbMaterial.opacity = OPACITY.violetOrb * edgeBlend;
 
+      cyanRing.position.set(
+        lerp(0, EDGE.cyanRing.x - edgeParallaxX * 0.5, edgeBlend),
+        lerp(0, EDGE.cyanRing.y + edgeParallaxY * 0.6, edgeBlend),
+        EDGE.cyanRing.z,
+      );
+      cyanRing.scale.setScalar(
+        lerp(0.001, EDGE.cyanRing.scale, edgeBlend),
+      );
       cyanRing.rotation.z = time * 0.2;
-      cyanRing.rotation.x = smoothMouseY * 0.15;
+      cyanRing.rotation.x = 1.25 + smoothMouseY * 0.08;
+      cyanRingMaterial.opacity = OPACITY.cyanRing * edgeBlend;
+
+      violetRing.position.set(
+        lerp(0, EDGE.violetRing.x + edgeParallaxX * 0.6, edgeBlend),
+        lerp(0, EDGE.violetRing.y - edgeParallaxY * 0.5, edgeBlend),
+        EDGE.violetRing.z,
+      );
+      violetRing.scale.setScalar(
+        lerp(0.001, EDGE.violetRing.scale, edgeBlend),
+      );
       violetRing.rotation.z = -time * 0.17;
+      violetRing.rotation.x = 1.1 - smoothMouseY * 0.06;
+      violetRingMaterial.opacity = OPACITY.violetRing * edgeBlend;
+
+      portalRing.position.set(
+        lerp(0, EDGE.portalRing.x, edgeBlend),
+        lerp(0, EDGE.portalRing.y + edgeParallaxY * 0.25, edgeBlend),
+        EDGE.portalRing.z,
+      );
+      portalRing.scale.setScalar(
+        lerp(0.001, EDGE.portalRing.scale * (1 + Math.sin(time * 0.8) * 0.04), edgeBlend),
+      );
       portalRing.rotation.z = time * 0.08;
-      portalRing.rotation.x = time * 0.12 + smoothMouseY * 0.1;
-      portalRing.scale.setScalar(1 + Math.sin(time * 0.8) * 0.04);
+      portalRing.rotation.x = time * 0.12;
+      portalRingMaterial.opacity = OPACITY.portalRing * edgeBlend;
 
       camera.position.x = smoothMouseX * 0.55;
       camera.position.y = -smoothMouseY * 0.35;
@@ -231,13 +296,13 @@ export function SceneBackground() {
       streakGeometry.dispose();
       streakMaterial.dispose();
       orbGeometry.dispose();
-      blueOrb.material.dispose();
-      violetOrb.material.dispose();
+      blueOrbMaterial.dispose();
+      violetOrbMaterial.dispose();
       ringGeometry.dispose();
-      cyanRing.material.dispose();
-      violetRing.material.dispose();
+      cyanRingMaterial.dispose();
+      violetRingMaterial.dispose();
       portalRing.geometry.dispose();
-      portalRing.material.dispose();
+      portalRingMaterial.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };

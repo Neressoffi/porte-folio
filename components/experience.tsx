@@ -156,7 +156,7 @@ function ExperienceCard({ item, index }: { item: Experience; index: number }) {
             ))}
             {extraPoints > 0 ? (
               <li className="flex items-center px-3 text-xs font-semibold text-gold">
-                + {extraPoints}
+                + {extraPoints} autres points
               </li>
             ) : null}
           </ul>

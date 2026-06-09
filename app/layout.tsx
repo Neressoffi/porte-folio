@@ -17,7 +17,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const siteDescription = `${profile.name}, ${profile.role} en alternance (ASAP). WordPress, Laravel, React — expériences Illisite et Amazon. ${contact.location}.`;
+const siteDescription = `${profile.name}, ${profile.role} en alternance (dès que possible). WordPress, Laravel, React — expériences Illisite et Amazon. ${contact.location}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://folio2026.local"),
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} - Portfolio`,
+    title: `${profile.name} — ${profile.role}`,
     description: siteDescription,
   },
 };

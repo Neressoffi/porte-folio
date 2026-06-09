@@ -24,6 +24,7 @@ export function Contact() {
       name: String(formData.get("name") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? "").trim(),
     };
 
     setStatus("loading");
@@ -36,7 +37,11 @@ export function Contact() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await response.json()) as { error?: string };
+      const data = (await response.json()) as {
+        error?: string;
+        thankYou?: string;
+        confirmation?: string;
+      };
 
       if (!response.ok) {
         throw new Error(data.error ?? "Erreur lors de l'envoi.");
@@ -44,7 +49,8 @@ export function Contact() {
 
       setStatus("success");
       setFeedback(
-        "Message envoyé. Vous recevrez un email de confirmation ; Ariel a été notifié.",
+        [data.thankYou, data.confirmation].filter(Boolean).join(" ") ||
+          "Message envoyé avec succès.",
       );
       form.reset();
     } catch (error) {
@@ -65,7 +71,7 @@ export function Contact() {
         <div>
           <SectionHeading
             eyebrow="Contact"
-            title="Alternance full stack — disponible ASAP"
+            title="Alternance full stack — disponible dès que possible"
             description={`${profile.name}, ${profile.role}. Mobilité : ${contact.location}. Échangeons sur une opportunité d'alternance ou un projet web.`}
           />
 
@@ -106,6 +112,15 @@ export function Contact() {
             onSubmit={handleSubmit}
             className="gaming-frame glass rounded-[2rem] p-5 md:p-8"
           >
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+              className="pointer-events-none absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+
             <div className="grid gap-5">
               <label className="grid gap-2">
                 <span className="text-sm font-medium text-slate-300">Nom</span>
@@ -118,7 +133,7 @@ export function Contact() {
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-sm font-medium text-slate-300">Email</span>
+                <span className="text-sm font-medium text-slate-300">Adresse e-mail</span>
                 <input
                   name="email"
                   type="email"

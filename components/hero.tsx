@@ -38,7 +38,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative mx-auto grid min-h-screen max-w-6xl items-center gap-14 px-6 pb-20 pt-28 md:grid-cols-[1.08fr_0.92fr] md:pt-36"
+      className="relative mx-auto grid max-w-6xl scroll-mt-[var(--nav-height)] items-start gap-10 px-6 pb-16 pt-4 md:grid-cols-[1.08fr_0.92fr] md:gap-14 md:pb-20 md:pt-6"
     >
       <motion.div
         style={{ y, opacity }}
@@ -61,7 +61,7 @@ export function Hero() {
         >
           <span className="text-gradient">{profile.role}</span>
           <span className="mt-2 block text-foreground">
-            powered by code, design & impact.
+            propulsé par le code, le design et l&apos;impact.
           </span>
         </motion.h1>
 
@@ -70,7 +70,7 @@ export function Hero() {
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
-          <Button href="#projects">
+          <Button href="#projects" data-analytics-label="Accéder aux missions">
             <Rocket className="size-4" />
             Accéder aux missions
             <ArrowRight className="size-4" />
@@ -80,11 +80,12 @@ export function Hero() {
             target="_blank"
             rel="noreferrer"
             variant="glass"
+            data-analytics-label="LinkedIn"
           >
             <Briefcase className="size-4" />
             LinkedIn
           </Button>
-          <Button href={contact.cvPath} variant="glass">
+          <Button href={contact.cvPath} variant="glass" data-analytics-label="CV PDF">
             <Download className="size-4" />
             CV PDF
           </Button>
@@ -186,7 +187,7 @@ export function Hero() {
 
               <div className="absolute bottom-4 left-4 right-4 z-[4] rounded-2xl border border-cyan/25 bg-black/50 p-4 backdrop-blur-md">
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.22em] text-cyan">
-                  <span>Systems Online</span>
+                  <span>Systèmes opérationnels</span>
                   <span className="neon-pulse size-2 rounded-full bg-cyan" />
                 </div>
                 <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">

@@ -1,3 +1,5 @@
+import { BuddySceneProvider } from "@/components/buddy-scene-provider";
+import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { DoorTransition } from "@/components/door-transition";
@@ -14,20 +16,25 @@ import { TechStack } from "@/components/tech-stack";
 
 export default function Home() {
   return (
-    <main className="content-stack relative isolate overflow-hidden">
-      <SceneBackground />
-      <MagicEffects />
-      <DoorTransition />
-      <ScrollProgress />
-      <Navbar />
-      <Hero />
-      <About />
-      <TechStack />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer />
-      <ProfileBuddy />
-    </main>
+    <BuddySceneProvider>
+      <main className="content-stack relative isolate overflow-hidden">
+        <AnalyticsTracker />
+        <SceneBackground />
+        <MagicEffects />
+        <DoorTransition />
+        <ScrollProgress />
+        <div className="content-stack-layer">
+          <Navbar />
+          <Hero />
+          <About />
+          <TechStack />
+          <Projects />
+          <Experience />
+          <Contact />
+          <Footer />
+        </div>
+        <ProfileBuddy />
+      </main>
+    </BuddySceneProvider>
   );
 }

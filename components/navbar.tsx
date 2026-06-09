@@ -19,14 +19,14 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed left-0 right-0 top-0 z-50 px-4 pt-4"
+      className="site-nav sticky top-0 z-50 px-4 py-0"
     >
       <nav
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-3 transition-all duration-500",
+          "mx-auto flex h-[var(--nav-height)] max-w-6xl items-center justify-between rounded-full px-4 transition-all duration-500",
           scrolled
             ? "nav-scrolled glass shadow-glow"
             : "border border-transparent bg-transparent",

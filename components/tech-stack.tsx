@@ -12,9 +12,9 @@ export function TechStack() {
   return (
     <MotionSection id="stack">
       <SectionHeading
-        eyebrow="Stack technique"
+        eyebrow="Technologies"
         title="Les outils que j'utilise au quotidien."
-        description="Stack alignée sur mon CV : frontend React, backend Laravel & WordPress, bases MySQL et méthode Agile."
+        description="Technologies alignées sur mon CV : React côté interface, Laravel et WordPress côté serveur, MySQL et méthode Agile."
       />
 
       <motion.div

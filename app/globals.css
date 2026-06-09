@@ -11,6 +11,7 @@
   --violet: #f59e0b;
   --muted: #a8a29e;
   --border-soft: rgba(251, 191, 36, 0.14);
+  --nav-height: 3.5rem;
 }
 
 @theme inline {
@@ -34,7 +35,7 @@
   box-sizing: border-box;
 }
 
-.content-stack > *:not(.readable-zone):not(script) {
+.content-stack > .content-stack-layer {
   position: relative;
   z-index: 10;
 }
@@ -45,6 +46,7 @@ html {
 }
 
 body {
+  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
   background:
@@ -135,10 +137,22 @@ a {
   left: 0;
   right: 0;
   z-index: 60;
-  height: 3px;
+  height: 2px;
   transform-origin: 0%;
   background: linear-gradient(90deg, var(--primary), var(--gold), var(--cyan));
   box-shadow: 0 0 18px rgba(220, 38, 38, 0.55), 0 0 28px rgba(251, 191, 36, 0.25);
+  pointer-events: none;
+}
+
+.site-nav {
+  margin: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 7, 8, 0.92) 0%,
+    rgba(10, 7, 8, 0.72) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(6px);
 }
 
 .nav-scrolled {
@@ -426,6 +440,13 @@ a {
 
 .ps5-float {
   animation: ps5-float 4.8s ease-in-out infinite;
+}
+
+.scene-3d-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
 }
 
 .scene-3d-layer canvas {
@@ -869,6 +890,82 @@ a {
   }
 }
 
+@keyframes buddy-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes buddy-bubble-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes buddy-leg-run {
+  from {
+    transform: rotate(-28deg) translateY(0);
+  }
+
+  to {
+    transform: rotate(22deg) translateY(-2px);
+  }
+}
+
+@keyframes buddy-smile-squash {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.04, 0.96);
+  }
+}
+
+@keyframes buddy-wow-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes buddy-laugh-tilt {
+  from {
+    transform: rotate(-4deg);
+  }
+
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes buddy-think-tilt {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
 @keyframes door-stage-fade {
   0%,
   72% {
@@ -1076,6 +1173,28 @@ a {
   background: linear-gradient(180deg, var(--gold), var(--primary));
 }
 
+.profile-buddy-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.profile-buddy-trigger:focus-visible {
+  outline: 2px solid rgba(251, 191, 36, 0.75);
+  outline-offset: 4px;
+  border-radius: 1rem;
+}
+
+.profile-buddy-fx-active .profile-buddy-avatar-wrap {
+  box-shadow:
+    0 0 0 2px rgba(56, 189, 248, 0.55),
+    0 0 24px rgba(56, 189, 248, 0.35);
+}
+
 .profile-buddy-close {
   position: absolute;
   top: -0.35rem;
@@ -1089,6 +1208,8 @@ a {
   line-height: 1;
   color: #fafaf9;
   cursor: pointer;
+  pointer-events: auto;
+  z-index: 2;
 }
 
 .profile-buddy-right .profile-buddy-close {
@@ -1146,80 +1267,394 @@ a {
   animation: buddy-think-tilt 2.5s ease-in-out infinite;
 }
 
-@keyframes buddy-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
+/* Dashboard admin contact — API interne gratuite */
+.admin-shell {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(220, 38, 38, 0.18), transparent 30rem),
+    radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.1), transparent 24rem),
+    #0a0708;
+  color: #fafaf9;
 }
 
-@keyframes buddy-bubble-pop {
-  from {
+.admin-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.admin-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fbbf24;
+}
+
+.admin-input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.85rem 1rem;
+  color: #fafaf9;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: rgba(220, 38, 38, 0.55);
+}
+
+.admin-button {
+  border-radius: 9999px;
+  background: #dc2626;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 0 32px rgba(220, 38, 38, 0.35);
+}
+
+.admin-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.55rem 0.95rem;
+  font-size: 0.8125rem;
+  color: #d6d3d1;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-tab:hover,
+.admin-tab-active {
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #fafaf9;
+}
+
+.admin-profile-photo {
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(220, 38, 38, 0.25),
+    0 0 24px rgba(220, 38, 38, 0.2);
+}
+
+.admin-chart {
+  position: relative;
+}
+
+.admin-chart-badge {
+  min-width: 4.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.65rem 0.9rem;
+  text-align: center;
+}
+
+.admin-chart-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.08), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  padding: 0.75rem 0.5rem 0.25rem;
+}
+
+.admin-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.admin-chart-grid-line {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1;
+  stroke-dasharray: 4 8;
+}
+
+.admin-chart-baseline {
+  stroke: rgba(251, 191, 36, 0.22);
+  stroke-width: 1.5;
+}
+
+.admin-chart-hover-line {
+  stroke: rgba(251, 191, 36, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.admin-chart-dot {
+  fill: #fafaf9;
+  stroke: #fbbf24;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.55));
+}
+
+.admin-chart-dot-empty {
+  fill: rgba(250, 250, 249, 0.35);
+  stroke: rgba(251, 191, 36, 0.35);
+  filter: none;
+}
+
+.admin-chart-dot-ring {
+  fill: rgba(251, 191, 36, 0.12);
+  stroke: rgba(251, 191, 36, 0.35);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.admin-chart-day {
+  fill: #78716c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  transition: fill 0.2s ease;
+}
+
+.admin-chart-day-active {
+  fill: #fafaf9;
+}
+
+.admin-chart-tooltip {
+  position: absolute;
+  top: 0.85rem;
+  z-index: 2;
+  min-width: 7rem;
+  translate: -50% 0;
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  border-radius: 0.9rem;
+  background: rgba(10, 7, 8, 0.92);
+  padding: 0.55rem 0.75rem;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.admin-chart-tooltip-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a8a29e;
+}
+
+.admin-chart-tooltip-value {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fafaf9;
+}
+
+.admin-zone-bar-track {
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-zone-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #fbbf24, #dc2626);
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.35);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.admin-live-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 1rem;
+  background: rgba(56, 189, 248, 0.08);
+  padding: 0.85rem 1rem;
+}
+
+.admin-live-dot {
+  position: relative;
+  width: 0.65rem;
+  height: 0.65rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #22d3ee;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.75);
+}
+
+.admin-live-dot::after {
+  position: absolute;
+  inset: -0.35rem;
+  border-radius: inherit;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  content: "";
+  animation: admin-live-pulse 1.8s ease-out infinite;
+}
+
+@keyframes admin-live-pulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.35);
     opacity: 0;
-    transform: scale(0.85) translateY(4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
   }
 }
 
-@keyframes buddy-leg-run {
-  from {
-    transform: rotate(-28deg) translateY(0);
-  }
-
-  to {
-    transform: rotate(22deg) translateY(-2px);
-  }
+.admin-visitor-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
 }
 
-@keyframes buddy-smile-squash {
-  0%,
-  100% {
-    transform: scale(1, 1);
-  }
-
-  50% {
-    transform: scale(1.04, 0.96);
-  }
+.admin-visitor-timeline {
+  display: grid;
+  gap: 0.85rem;
 }
 
-@keyframes buddy-wow-pop {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
+.admin-visitor-timeline li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
 }
 
-@keyframes buddy-laugh-tilt {
-  from {
-    transform: rotate(-4deg);
-  }
-
-  to {
-    transform: rotate(4deg);
-  }
+.admin-visitor-timeline-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #fbbf24;
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.55);
 }
 
-@keyframes buddy-think-tilt {
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
+.admin-visitor-pill {
+  border-radius: 9999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 
-  50% {
-    transform: rotate(3deg);
-  }
+.admin-visitor-pill-view {
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.12);
+  color: #bae6fd;
+}
+
+.admin-visitor-pill-click {
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.12);
+  color: #fde68a;
+}
+
+.admin-live-ip-table thead {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-live-ip-row {
+  transition: background 0.2s ease;
+}
+
+.admin-live-ip-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-ip-badge {
+  display: inline-block;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 0.2rem 0.55rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  color: #bae6fd;
+}
+
+.admin-ip-badge-sm {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+}
+
+.admin-city-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  background: rgba(251, 191, 36, 0.1);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fde68a;
+}
+
+.admin-city-badge-sm {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+}
+
+.admin-company-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(167, 139, 250, 0.32);
+  background: rgba(167, 139, 250, 0.12);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ddd6fe;
+}
+
+.admin-company-badge-sm {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+}
+
+.admin-live-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.admin-live-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+}
+
+.admin-live-status-active {
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.12);
+  color: #a7f3d0;
+}
+
+.admin-live-status-active .admin-live-status-dot {
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
+}
+
+.admin-live-status-idle {
+  border: 1px solid rgba(120, 113, 108, 0.35);
+  background: rgba(120, 113, 108, 0.12);
+  color: #d6d3d1;
+}
+
+.admin-live-status-idle .admin-live-status-dot {
+  background: #78716c;
 }
 
 @media (max-width: 767px) {

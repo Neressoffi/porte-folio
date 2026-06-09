@@ -13,6 +13,7 @@ import { createPortal } from "react-dom";
 
 import { profile } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { useBuddyScene } from "@/components/buddy-scene-provider";
 
 type Mood = {
   id: string;
@@ -60,7 +61,7 @@ const MOODS: Mood[] = [
   },
 ];
 
-const BUDDY_TOP_OFFSET = 72;
+const BUDDY_TOP_OFFSET = 64;
 const BUDDY_BOTTOM_MARGIN = 96;
 
 function Buddy3D({
@@ -117,6 +118,7 @@ export function ProfileBuddy() {
   const [side, setSide] = useState<"left" | "right">("right");
   const [visible, setVisible] = useState(true);
   const [travelPx, setTravelPx] = useState(480);
+  const { edgeOrbsVisible, toggleEdgeOrbs } = useBuddyScene();
 
   const { scrollY, scrollYProgress } = useScroll();
 
@@ -195,8 +197,9 @@ export function ProfileBuddy() {
   return createPortal(
     <motion.div
       className={cn(
-        "profile-buddy pointer-events-none",
+        "profile-buddy",
         side === "left" ? "profile-buddy-left" : "profile-buddy-right",
+        edgeOrbsVisible && "profile-buddy-fx-active",
       )}
       style={{
         top: BUDDY_TOP_OFFSET,
@@ -205,24 +208,39 @@ export function ProfileBuddy() {
       }}
       aria-hidden
     >
-      <div
-        className={cn(
-          "profile-buddy-inner",
-          side === "left" && "profile-buddy-inner-flip",
-        )}
+      <button
+        type="button"
+        className="profile-buddy-trigger"
+        onClick={toggleEdgeOrbs}
+        aria-label={
+          edgeOrbsVisible
+            ? "Masquer les effets 3D sur les bords de la page"
+            : "Afficher les effets 3D sur les bords de la page"
+        }
+        aria-pressed={edgeOrbsVisible}
       >
-        <Buddy3D
-          mood={mood}
-          rotateY={rotateY}
-          rotateX={rotateX}
-          translateZ={translateZ}
-        />
-      </div>
+        <div
+          className={cn(
+            "profile-buddy-inner",
+            side === "left" && "profile-buddy-inner-flip",
+          )}
+        >
+          <Buddy3D
+            mood={mood}
+            rotateY={rotateY}
+            rotateX={rotateX}
+            translateZ={translateZ}
+          />
+        </div>
+      </button>
 
       <button
         type="button"
-        className="profile-buddy-close pointer-events-auto"
-        onClick={() => setVisible(false)}
+        className="profile-buddy-close"
+        onClick={(event) => {
+          event.stopPropagation();
+          setVisible(false);
+        }}
         aria-label={`Masquer le compagnon ${profile.name}`}
       >
         ×

@@ -2,7 +2,7 @@ import { contact, navItems, profile } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="mx-auto max-w-6xl px-6 pb-10 pt-4">
+    <footer id="footer" className="mx-auto max-w-6xl px-6 pb-10 pt-4">
       <div className="glass flex flex-col gap-6 rounded-[2rem] p-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="font-display text-lg font-semibold">{profile.name}</p>

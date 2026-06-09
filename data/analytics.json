@@ -1,0 +1,129 @@
+{
+  "zones": {
+    "top": {
+      "views": 4,
+      "clicks": 0,
+      "lastViewAt": "2026-06-09T08:21:12.275Z"
+    },
+    "about": {
+      "views": 2,
+      "clicks": 0,
+      "lastViewAt": "2026-06-09T07:57:55.724Z"
+    },
+    "stack": {
+      "views": 0,
+      "clicks": 0
+    },
+    "projects": {
+      "views": 0,
+      "clicks": 0
+    },
+    "experience": {
+      "views": 0,
+      "clicks": 0
+    },
+    "contact": {
+      "views": 0,
+      "clicks": 0
+    },
+    "footer": {
+      "views": 0,
+      "clicks": 0
+    },
+    "navbar": {
+      "views": 0,
+      "clicks": 0
+    }
+  },
+  "clickLabels": {},
+  "dailyViews": {
+    "2026-06-09": 6
+  },
+  "events": [
+    {
+      "id": "44d2cdaf-59aa-4819-8635-e833b2d9d54d",
+      "visitorId": "83d1d6c3-b7ca-408c-a675-18c8fd8be6e6",
+      "zoneId": "about",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T07:57:55.650Z"
+    },
+    {
+      "id": "5fd61aeb-4f4a-4a84-ac5e-80c832b55806",
+      "visitorId": "83d1d6c3-b7ca-408c-a675-18c8fd8be6e6",
+      "zoneId": "about",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T07:57:55.724Z"
+    },
+    {
+      "id": "3292af36-2f35-4a95-80b2-91ded65117c5",
+      "visitorId": "83d1d6c3-b7ca-408c-a675-18c8fd8be6e6",
+      "zoneId": "top",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T07:57:55.798Z"
+    },
+    {
+      "id": "d9df7e29-338d-4a62-8384-d21665a74c39",
+      "visitorId": "83d1d6c3-b7ca-408c-a675-18c8fd8be6e6",
+      "zoneId": "top",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T07:57:55.910Z"
+    },
+    {
+      "id": "a2c3a438-bf17-415e-aeee-a4686736ee99",
+      "visitorId": "459e0f68-65f6-429f-8670-7118fcabe664",
+      "zoneId": "top",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T08:18:12.937Z"
+    },
+    {
+      "id": "4eebe4c3-4f35-4f7b-99dc-01f372a29dec",
+      "visitorId": "459e0f68-65f6-429f-8670-7118fcabe664",
+      "zoneId": "top",
+      "type": "view",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "createdAt": "2026-06-09T08:21:12.275Z"
+    }
+  ],
+  "visitors": {
+    "83d1d6c3-b7ca-408c-a675-18c8fd8be6e6": {
+      "firstSeen": "2026-06-09T07:57:55.650Z",
+      "lastSeen": "2026-06-09T07:57:55.910Z",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "movements": 4
+    },
+    "459e0f68-65f6-429f-8670-7118fcabe664": {
+      "firstSeen": "2026-06-09T08:18:12.937Z",
+      "lastSeen": "2026-06-09T08:21:12.275Z",
+      "ip": "212.114.26.238",
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro",
+      "movements": 2
+    }
+  },
+  "ipLocations": {
+    "212.114.26.238": {
+      "city": "Paris, Île-de-France, France",
+      "company": "Free Pro"
+    }
+  },
+  "updatedAt": "2026-06-09T08:21:12.286Z"
+}
