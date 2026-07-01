@@ -88,6 +88,40 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "APVF",
+    category: "Site institutionnel",
+    client: "Illisite",
+    description:
+      "Site pour l'Association des Petites Villes de France : actualités, événements, adhésions et valorisation des services aux collectivités. Gestion dynamique des contenus avec types de contenu personnalisés.",
+    steps: [
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
+      "Champs personnalisés ACF",
+      "Types de contenu personnalisés (CPT)",
+      "Version mobile adaptative",
+    ],
+    tech: ["WordPress", "ACF", "CPT", "PHP"],
+    demo: "https://www.apvf.asso.fr",
+    image: "/projects/apvf.png",
+    gradient: "from-blue-500/30 via-cyan-300/15 to-transparent",
+  },
+  {
+    title: "AIIRF",
+    category: "Site institutionnel • Recette",
+    client: "Illisite",
+    description:
+      "Site en version développement/recette pour l'Alliance de l'Industrie et de l'Ingénierie des Réseaux Ferroviaires : filière ferroviaire, groupes de travail, actualités, événements et adhésion.",
+    steps: [
+      "Découpage maquette en composants (en-tête, corps, pied de page)",
+      "Champs personnalisés ACF",
+      "Types de contenu personnalisés (CPT)",
+      "Version mobile adaptative",
+    ],
+    tech: ["WordPress", "ACF", "CPT", "PHP"],
+    demo: "https://www.aiirf.fr",
+    image: "/projects/aiirf.png",
+    gradient: "from-slate-300/20 via-blue-400/15 to-transparent",
+  },
+  {
     title: "SEPM",
     category: "Institutionnel + Espace adhérent",
     client: "Illisite • Laravel",
@@ -175,40 +209,6 @@ export const projects: Project[] = [
     demo: "https://memoirevive.illisite.info",
     image: "/projects/memoires-vives.png",
     gradient: "from-emerald-400/25 via-teal-300/15 to-transparent",
-  },
-  {
-    title: "APVF",
-    category: "Site institutionnel",
-    client: "Illisite",
-    description:
-      "Site pour l'Association des Petites Villes de France : actualités, événements, adhésions et valorisation des services aux collectivités. Gestion dynamique des contenus avec types de contenu personnalisés.",
-    steps: [
-      "Découpage maquette en composants (en-tête, corps, pied de page)",
-      "Champs personnalisés ACF",
-      "Types de contenu personnalisés (CPT)",
-      "Version mobile adaptative",
-    ],
-    tech: ["WordPress", "ACF", "CPT", "PHP"],
-    demo: "https://www.apvf.asso.fr",
-    image: "/projects/apvf.png",
-    gradient: "from-blue-500/30 via-cyan-300/15 to-transparent",
-  },
-  {
-    title: "AIIRF",
-    category: "Site institutionnel • Recette",
-    client: "Illisite",
-    description:
-      "Site en version développement/recette pour l'Alliance de l'Industrie et de l'Ingénierie des Réseaux Ferroviaires : filière ferroviaire, groupes de travail, actualités, événements et adhésion.",
-    steps: [
-      "Découpage maquette en composants (en-tête, corps, pied de page)",
-      "Champs personnalisés ACF",
-      "Types de contenu personnalisés (CPT)",
-      "Version mobile adaptative",
-    ],
-    tech: ["WordPress", "ACF", "CPT", "PHP"],
-    demo: "https://www.aiirf.fr",
-    image: "/projects/aiirf.png",
-    gradient: "from-slate-300/20 via-blue-400/15 to-transparent",
   },
 ];
 
