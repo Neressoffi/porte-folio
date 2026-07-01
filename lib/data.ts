@@ -7,7 +7,9 @@ import {
   Layers3,
   Palette,
   Server,
+  Smartphone,
   Sparkles,
+  Terminal,
   Workflow,
 } from "lucide-react";
 
@@ -18,18 +20,19 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/ariel-ngoualem/",
   github: "https://github.com/Neressoffi",
   location: "Toute la France",
-  cvPath: "/cv.pdf",
+  cvPath: "/cv.png",
+  portfolioUrl: "https://porte-folio-sigma.vercel.app/",
 };
 
 export const profile = {
   name: "Ariel Ngoualem",
-  role: "Développeur Full Stack",
-  headline: "Recherche d'une alternance • dès que possible",
+  role: "Développeur Fullstack",
+  headline: "Recherche d'une alternance — Développeur Fullstack | ASAP",
   location: contact.location,
-  availability: "Alternance full stack • Disponible",
+  availability: "Alternance fullstack • Disponible immédiatement",
   image: "/profile.png",
   tagline:
-    "Je conçois des sites WordPress et des applications Laravel, avec des interfaces React soignées, des API REST et des outils d'administration utiles pour les équipes et les clients.",
+    "Étudiant en Bachelor Concepteur Développeur d'Applications (Cloud Campus, Paris 2025–2027), spécialisé en développement Full-Stack. Je recherche une alternance pour mettre en pratique WordPress, Laravel, PHP et React.js, fort de mes expériences chez Illisite et Amazon.",
 };
 
 export const languages = [
@@ -38,10 +41,10 @@ export const languages = [
 ];
 
 export const softSkills = [
+  "Agile Scrum",
+  "Travail collaboratif",
   "Esprit d'analyse",
-  "Communication",
   "Force de proposition",
-  "Sens du collectif",
 ];
 
 export const navItems = [
@@ -53,23 +56,27 @@ export const navItems = [
 ];
 
 export const highlights = [
-  "WordPress sur mesure : ACF, types de contenu personnalisés et intégration CMS",
-  "Applications Laravel : API REST, tableaux de bord admin et fonctionnalités métier",
-  "React + Laravel : maquettes Figma, Scrum et mise en production",
-  "Déploiement, hébergement et collaboration avec designers et développeurs",
+  "WordPress sur mesure : PHP, CPT, ACF et gestion de contenu autonome",
+  "Laravel : API REST, règles métier, MySQL et interfaces d'administration",
+  "React.js & React Native : interfaces, état et intégration API",
+  "Notifications (e-mail, SMS, push), Git/GitHub et déploiement en production",
 ];
 
 export const techStack = [
   { name: "WordPress", icon: Globe2, tone: "from-sky-400/30 to-blue-500/10" },
   { name: "Laravel", icon: Server, tone: "from-red-300/20 to-orange-500/10" },
   { name: "React.js", icon: Sparkles, tone: "from-cyan-300/30 to-blue-400/10" },
+  { name: "React Native", icon: Smartphone, tone: "from-blue-300/30 to-indigo-500/10" },
   { name: "PHP", icon: Code2, tone: "from-violet-300/30 to-indigo-500/10" },
+  { name: "Node.js", icon: Terminal, tone: "from-green-300/25 to-emerald-500/10" },
   { name: "JavaScript", icon: Braces, tone: "from-yellow-300/20 to-amber-500/10" },
-  { name: "Tailwind / SCSS", icon: Layers3, tone: "from-cyan-300/30 to-teal-500/10" },
-  { name: "MySQL", icon: Database, tone: "from-emerald-300/30 to-green-500/10" },
-  { name: "Figma", icon: Palette, tone: "from-pink-300/30 to-violet-500/10" },
-  { name: "Git / GitHub", icon: GitBranch, tone: "from-orange-300/30 to-pink-500/10" },
-  { name: "Agile / Scrum", icon: Workflow, tone: "from-slate-200/30 to-slate-500/10" },
+  { name: "HTML5 / CSS3 / SCSS", icon: Layers3, tone: "from-cyan-300/30 to-teal-500/10" },
+  { name: "Tailwind", icon: Layers3, tone: "from-teal-300/30 to-cyan-500/10" },
+  { name: "MySQL / SQL", icon: Database, tone: "from-emerald-300/30 to-green-500/10" },
+  { name: "Figma / Photoshop", icon: Palette, tone: "from-pink-300/30 to-violet-500/10" },
+  { name: "Git / GitHub / GitLab", icon: GitBranch, tone: "from-orange-300/30 to-pink-500/10" },
+  { name: "Postman / Jira", icon: Workflow, tone: "from-slate-200/30 to-slate-500/10" },
+  { name: "Agile / Scrum", icon: Workflow, tone: "from-amber-200/25 to-orange-500/10" },
 ];
 
 export type Project = {
@@ -80,9 +87,17 @@ export type Project = {
   steps: string[];
   tech: string[];
   demo?: string;
-  /** Capture du site — ex. `/projects/sepm.jpg` dans `public/projects/` */
   image?: string;
   gradient: string;
+  github?: string;
+};
+
+export type SideProject = {
+  title: string;
+  category: string;
+  description: string;
+  tech: string[];
+  demo?: string;
   github?: string;
 };
 
@@ -131,13 +146,8 @@ export const projects: Project[] = [
       "Analyse des besoins et définition des fonctionnalités (site + espace adhérent)",
       "Modélisation BDD (MCD/MLD) : adhérents, sociétés, publications, actualités, stats",
       "Configuration Laravel : routes, contrôleurs, migrations, modèles Eloquent",
-      "Migrations et relations entre les tables",
-      "Intégration maquette : en-tête, corps, pied de page, menus et sections dynamiques",
-      "Pages institutionnelles : actualités, champs d'actions, publications, statistiques",
       "Espace membre sécurisé avec authentification et gestion des accès",
-      "Gestion complète des adhérents, publications et contenus administrables",
       "Interface d'administration simplifiée pour les administrateurs",
-      "Version mobile, tablette et ordinateur adaptative",
       "Tests, corrections, optimisations et mise en recette",
     ],
     tech: ["Laravel", "PHP", "MySQL", "Eloquent", "Blade", "Auth"],
@@ -150,7 +160,7 @@ export const projects: Project[] = [
     category: "Site vitrine • Bâtiment",
     client: "Illisite",
     description:
-      "Site vitrine pour l'entreprise générale de bâtiment ANB : présentation des services (industriel & particulier), demandes de devis, partenaires et contact. Design adaptatif avec gestion de contenu simplifiée pour le client.",
+      "Site vitrine pour l'entreprise générale de bâtiment ANB : présentation des services (industriel & particulier), demandes de devis, partenaires et contact.",
     steps: [
       "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
@@ -166,7 +176,7 @@ export const projects: Project[] = [
     category: "Site vitrine • Électricité",
     client: "Illisite",
     description:
-      "Site vitrine pour Facitec, entreprise d'électricité en région parisienne : prestations, activité et pages de présentation. Interface adaptative et administration simple pour les mises à jour client.",
+      "Site vitrine pour Facitec, entreprise d'électricité en région parisienne : prestations, activité et pages de présentation.",
     steps: [
       "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
@@ -182,7 +192,7 @@ export const projects: Project[] = [
     category: "Vitrine + E-commerce",
     client: "Illisite",
     description:
-      "Site vitrine avec boutique en ligne pour Pixlab (réparation d'écrans LED professionnels & matériel DJ) : services SAV, catalogue de pièces détachées, demandes de devis et gestion produits.",
+      "Site vitrine avec boutique en ligne pour Pixlab (réparation d'écrans LED professionnels & matériel DJ) : services SAV, catalogue de pièces détachées et demandes de devis.",
     steps: [
       "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
@@ -198,7 +208,7 @@ export const projects: Project[] = [
     category: "Site institutionnel",
     client: "Illisite",
     description:
-      "Site institutionnel pour la Fédération des centres sociaux de France : actualités, ressources et repères historiques du réseau. Interface adaptative avec frise chronologique interactive.",
+      "Site institutionnel pour la Fédération des centres sociaux de France : actualités, ressources et repères historiques du réseau, avec frise chronologique interactive.",
     steps: [
       "Découpage maquette en composants (en-tête, corps, pied de page)",
       "Champs personnalisés ACF",
@@ -209,6 +219,79 @@ export const projects: Project[] = [
     demo: "https://memoirevive.illisite.info",
     image: "/projects/memoires-vives.png",
     gradient: "from-emerald-400/25 via-teal-300/15 to-transparent",
+  },
+];
+
+export const personalProjects: SideProject[] = [
+  {
+    title: "Portfolio",
+    category: "Projet personnel",
+    description:
+      "Portfolio développé avec React.js, hébergé sur Vercel, avec animations CSS et présentation de mes réalisations professionnelles.",
+    tech: ["React.js", "Vercel", "CSS", "Animations"],
+    demo: contact.portfolioUrl,
+    github: contact.github,
+  },
+  {
+    title: "Assistant IA personnel",
+    category: "Projet personnel",
+    description:
+      "IA conversationnelle avec interface HUD, chat vocal et lancement automatisé (.bat). Développé en Python, JavaScript et HTML/CSS.",
+    tech: ["Python", "JavaScript", "HTML/CSS", "IA conversationnelle"],
+    demo: "https://myia-wtu7.onrender.com",
+    github: contact.github,
+  },
+];
+
+export const schoolProjects: SideProject[] = [
+  {
+    title: "Quiz interactif",
+    category: "Projet école",
+    description: "Application de quiz interactif en JavaScript.",
+    tech: ["JavaScript"],
+    github: contact.github,
+  },
+  {
+    title: "Mini moteur de recherche",
+    category: "Projet école",
+    description: "Moteur de recherche front-end en HTML, CSS et JavaScript.",
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    github: contact.github,
+  },
+  {
+    title: "Dashboard",
+    category: "Projet école",
+    description: "Tableau de bord conçu avec React et maquettes Figma.",
+    tech: ["React.js", "Figma"],
+    github: contact.github,
+  },
+  {
+    title: "Voyages",
+    category: "Projet école",
+    description: "Application React avec gestion d'état Redux.",
+    tech: ["React.js", "Redux"],
+    github: contact.github,
+  },
+  {
+    title: "About-the-universe",
+    category: "Projet école",
+    description: "Projet React avec Vite sur le thème de l'univers.",
+    tech: ["React.js", "Vite"],
+    github: contact.github,
+  },
+  {
+    title: "Country",
+    category: "Projet école",
+    description: "Application React avec Redux pour explorer des pays.",
+    tech: ["React.js", "Redux"],
+    github: contact.github,
+  },
+  {
+    title: "TP Dashboard",
+    category: "Projet école",
+    description: "Travaux pratiques — tableau de bord en React.",
+    tech: ["React.js"],
+    github: contact.github,
   },
 ];
 
@@ -228,7 +311,7 @@ export type Experience = {
 
 export const careerSummary = {
   headline:
-    "Alternance chez Illisite, stages chez Amazon, CCESI et DEKRA, formation Bachelor CDA (Cloud Campus).",
+    "Alternance Illisite, stage Amazon, Bachelor CDA Cloud Campus — WordPress, Laravel, React.",
 };
 
 export const experiences: Experience[] = [
@@ -239,52 +322,41 @@ export const experiences: Experience[] = [
     location: "Paris, France",
     title: "Développeur Web",
     type: "alternance",
-    stack: ["WordPress", "Laravel", "PHP", "ACF", "MySQL"],
+    stack: [
+      "WordPress",
+      "ACF",
+      "PHP",
+      "Laravel",
+      "API REST",
+      "MySQL",
+      "Git",
+      "GitHub",
+    ],
     description:
-      "Conception et développement de sites WordPress en PHP et d'applications web avec Laravel. Personnalisation CMS (ACF, CPT), API REST, tableaux de bord d'administration, collaboration avec designers et déploiement en production.",
-  },
-  {
-    period: "Juillet – Août 2024",
-    duration: "2 mois",
-    company: "Amazon",
-    location: "Paris, France",
-    title: "Développeur Full Stack",
-    type: "stage",
-    stack: ["React", "Laravel", "Figma", "Scrum", "MySQL"],
-    description:
-      "Plateforme web type Airbnb avec React.js et Laravel : tableaux de bord admin et utilisateur (comptes, annonces, réservations), maquettes Figma, méthode Scrum et participation au déploiement en production.",
-  },
-  {
-    period: "Août – Sept. 2024",
-    duration: "2 mois",
-    company: "CCESI Agence de Nantes",
-    location: "Paris, France",
-    title: "Développeur Web",
-    type: "stage",
-    stack: ["PHP", "JavaScript", "Bootstrap", "WooCommerce", "MySQL", "PHPUnit"],
-    description:
-      "Mise en place d'un site de réservation de salles de fêtes : analyse du cahier des charges, modélisation MERISE et développement orienté réservation et paiement.",
+      "Conception et développement de solutions web sur mesure (WordPress et Laravel) en collaboration avec l'équipe technique pour répondre aux besoins métiers des clients.",
     points: [
-      "Référencement SEO et intégration WooCommerce (paiement / réservation)",
-      "Interface adaptative Bootstrap et fonctionnalités interactives JavaScript",
-      "Back-end PHP, sessions, formulaires et base MySQL",
-      "Tests unitaires PHPUnit, documentation et méthode Scrum",
+      "Sites WordPress en PHP, CPT et ACF pour une gestion de contenu autonome",
+      "API REST Laravel (authentification, règles métier, MySQL) et interfaces d'administration",
+      "Système de notifications (e-mail, SMS, push) pour automatiser les communications",
+      "Versioning et déploiement avec Git et GitHub",
+      "Participation au déploiement et au suivi en production",
     ],
   },
   {
-    period: "Mai – Nov. 2023",
-    duration: "7 mois",
-    company: "DEKRA France",
-    location: "Paris · Sur site",
-    title: "Intégrateur Webmaster",
+    period: "Mai 2024 – Août 2024",
+    duration: "4 mois",
+    company: "Amazon",
+    location: "Paris, France",
+    title: "Développeur Full-Stack",
     type: "stage",
-    stack: ["HTML/CSS", "JavaScript", "CMS", "SEO"],
+    stack: ["React.js", "Laravel", "PHP", "API REST", "MySQL", "Figma", "Scrum"],
     description:
-      "Développement et maintenance du site web DEKRA : modernisation de l'existant, amélioration de l'expérience utilisateur et suivi des performances.",
+      "Conception d'une plateforme web type Airbnb (frontend React.js / backend Laravel).",
     points: [
-      "Intégration de nouvelles fonctionnalités et refonte de pages clés",
-      "Suivi des performances et propositions d'amélioration",
-      "Collaboration avec les équipes internes pour maintenance et support",
+      "Frontend React.js (composants, gestion d'état) et backend Laravel (API REST, JWT, CRUD)",
+      "Tableau de bord admin et utilisateur : comptes, annonces, réservations",
+      "Méthode Scrum (sprints, stand-ups) et participation au lancement de l'application",
+      "Maquettes UI/UX Figma et intégration des interfaces en équipe",
     ],
   },
   {
@@ -294,9 +366,9 @@ export const experiences: Experience[] = [
     location: "Paris, France",
     title: "Concepteur Développeur d'Applications",
     type: "formation",
-    stack: ["Architecture", "Applications web", "Projets web"],
+    stack: ["Architecture", "Applications web", "Full-Stack"],
     description:
-      "Formation en développement d'applications web et logicielles : architecture, projets full stack et bonnes pratiques de développement.",
+      "Formation Bachelor Concepteur Développeur d'Applications — développement d'applications web et logicielles, architecture et bonnes pratiques.",
   },
 ];
 
@@ -310,7 +382,7 @@ export const experienceTypeLabels: Record<
 };
 
 export const stats = [
-  { label: "Projets", value: "7", detail: "WordPress & Laravel (Illisite)" },
-  { label: "Expériences", value: "4", detail: "Illisite · Amazon · CCESI · DEKRA" },
-  { label: "Objectif", value: "Dès que possible", detail: "Alternance full stack" },
+  { label: "Projets", value: "7+", detail: "WordPress & Laravel (Illisite)" },
+  { label: "Expériences", value: "2", detail: "Illisite · Amazon" },
+  { label: "Objectif", value: "ASAP", detail: "Alternance fullstack" },
 ];

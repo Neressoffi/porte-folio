@@ -85,9 +85,9 @@ export function Hero() {
             <Briefcase className="size-4" />
             LinkedIn
           </Button>
-          <Button href={contact.cvPath} variant="glass" data-analytics-label="CV PDF">
+          <Button href={contact.cvPath} variant="glass" data-analytics-label="Télécharger le CV">
             <Download className="size-4" />
-            CV PDF
+            Télécharger le CV
           </Button>
         </motion.div>
 

@@ -17,17 +17,17 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const siteDescription = `${profile.name}, ${profile.role} en alternance (dès que possible). WordPress, Laravel, React — expériences Illisite et Amazon. ${contact.location}.`;
+const siteDescription = `${profile.name}, ${profile.role} en alternance (ASAP). WordPress, Laravel, React — Illisite et Amazon. ${contact.location}.`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://folio2026.local"),
+  metadataBase: new URL(contact.portfolioUrl),
   title: {
     default: `${profile.name} - ${profile.role} | Alternance`,
     template: `%s | ${profile.name}`,
   },
   description: siteDescription,
   keywords: [
-    "développeur full stack",
+    "développeur fullstack",
     "alternance",
     "React",
     "Laravel",

@@ -29,8 +29,8 @@ export function About() {
         </motion.div>
         <SectionHeading
           eyebrow="À propos"
-          title="Développeur full stack, rigoureux et collaboratif."
-          description="De CCESI et DEKRA à Amazon puis Illisite, je livre des produits web complets — du CMS WordPress aux apps Laravel et React."
+          title="Développeur fullstack, rigoureux et collaboratif."
+          description="Alternance Illisite et stage Amazon : WordPress, Laravel, React.js, API REST et déploiement en production."
         />
       </div>
 
@@ -45,9 +45,9 @@ export function About() {
         <motion.p variants={fadeUp} className="text-lg leading-8 text-slate-200">
           Je suis <strong className="text-foreground">{profile.name}</strong>,{" "}
           {profile.role.toLowerCase()} — <strong className="text-cyan">{profile.headline}</strong>.
-          Basé en France, j&apos;ai construit mon parcours sur des stages (réservation,
-          intégration web, full stack) avant l&apos;alternance Illisite : WordPress,
-          Laravel, React et interfaces orientées utilisateur.
+          Étudiant en Bachelor CDA chez Cloud Campus (Paris, 2025–2027), je mets en
+          pratique WordPress, Laravel, PHP et React.js grâce à mon alternance chez
+          Illisite et mon stage full stack chez Amazon.
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
